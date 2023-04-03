@@ -1,17 +1,20 @@
 import { View, Text } from "react-native";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 
 export default function Details() {
   const router = useRouter();
   return (
-    <View>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+              <Stack.Screen
+        options={{ title: "Detail Screen"  }}
+      />
       <Text
         onPress={() => {
           // Go back to the previous screen using the imperative API.
           router.back();
         }}
       >
-        Details Screen
+        GO BACK
       </Text>
     </View>
   );
