@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "scheme": "acme",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "rn-file-router",
+    "slug": "rn-file-router"
+  }
+}
