@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 import { Link, Stack, useRootNavigationState } from "expo-router";
 import { useRouter, useSegments } from "expo-router";
 import React from "react";
@@ -35,20 +35,25 @@ export default function Home() {
       ) : (
         <>
           {/* Use the `Screen` component to configure the layout. */}
-          <Stack.Screen options={{ title: "Overview" }} />
+          <Stack.Screen
+            options={{
+              title: "Overview",
+              headerRight: () => (
+                <Button
+                  onPress={() => {
+                    AuthStore.update((s) => {
+                      s.isLoggedIn = false;
+                    });
+                    router.replace("/");
+                  }}
+                  title="LOGOUT"
+                />
+              ),
+            }}
+          />
           {/* Use the `Link` component to enable optimized client-side routing. */}
           <Link href="/details">Go to Details</Link>
 
-          <Text
-            onPress={() => {
-              AuthStore.update((s) => {
-                s.isLoggedIn = false;
-              });
-              router.replace("/");
-            }}
-          >
-            LOGOUT
-          </Text>
         </>
       )}
     </View>
