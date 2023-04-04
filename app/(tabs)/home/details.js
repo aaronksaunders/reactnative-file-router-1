@@ -5,9 +5,7 @@ export default function Details() {
   const router = useRouter();
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-              <Stack.Screen
-        options={{ title: "Detail Screen"  }}
-      />
+      <Stack.Screen options={{ title: "Detail Screen" }} />
       <Text
         onPress={() => {
           // Go back to the previous screen using the imperative API.
@@ -19,3 +17,5 @@ export default function Details() {
     </View>
   );
 }
+
+//https://fonts.google.com/specimen/Encode+Sans+Semi+Condensed
