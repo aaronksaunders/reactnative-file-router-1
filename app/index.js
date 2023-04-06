@@ -1,4 +1,4 @@
-import { Redirect, useRootNavigationState } from "expo-router";
+import { useRootNavigationState } from "expo-router";
 import { useRouter, useSegments } from "expo-router";
 import { AuthStore } from "../store";
 import React from "react";
@@ -17,13 +17,13 @@ const Index = () => {
 
     if (
       // If the user is not signed in and the initial segment is not anything
-      // in the auth group.
+      //  segment is not anything in the auth group.
       !isLoggedIn &&
       !inAuthGroup
     ) {
       // Redirect to the login page.
       router.replace("/login");
-    } else if (isLoggedIn && inAuthGroup) {
+    } else if (isLoggedIn) {
       // go to tabs root.
       router.replace("/(tabs)/home");
     }

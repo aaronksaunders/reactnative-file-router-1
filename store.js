@@ -3,7 +3,7 @@ import { Store, registerInDevtools } from "pullstate";
 
 
 export const AuthStore = new Store({
-  isLoggedIn: false,
+  isLoggedIn: true,
 });
 
 registerInDevtools({AuthStore});

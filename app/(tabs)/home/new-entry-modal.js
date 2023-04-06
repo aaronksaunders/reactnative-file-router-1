@@ -21,7 +21,6 @@ export default function Modal() {
         title="CLOSE"
       />
 
-
       {/* Native modals have dark backgrounds on iOS, set the status bar to light content. */}
       <StatusBar style="light" />
     </View>
