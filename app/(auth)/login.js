@@ -3,7 +3,6 @@ import { AuthStore } from "../../store.js";
 import { Stack, useRouter } from "expo-router";
 
 export default function LogIn() {
-  const isLoggedIn = AuthStore.useState((s) => s.isLoggedIn);
   const router = useRouter();
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -13,7 +12,7 @@ export default function LogIn() {
           AuthStore.update((s) => {
             s.isLoggedIn = true;
           });
-          router.replace("/");
+          router.replace("/(tabs)/home");
         }}
       >
         Login

@@ -38,6 +38,7 @@ export default function Home() {
           <Stack.Screen
             options={{
               title: "Overview",
+              headerShown: true,
               headerRight: () => (
                 <Button
                   onPress={() => {
@@ -53,7 +54,6 @@ export default function Home() {
           />
           {/* Use the `Link` component to enable optimized client-side routing. */}
           <Link href="/details">Go to Details</Link>
-
         </>
       )}
     </View>
