@@ -5,6 +5,10 @@
 
 Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
 
+## See Integration With Firebase Authentication
+- code - https://github.com/aaronksaunders/reactnative-file-router-1/tree/firebase-auth
+- video - https://www.youtube.com/watch?v=Os5_DRhN2Aw
+
 
 ## 📝 Notes
 
