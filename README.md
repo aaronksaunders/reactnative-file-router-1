@@ -1,7 +1,8 @@
 # Expo Router Tabs With Auth Example
 
 
-## 📺 Video - https://youtu.be/WNZbARN7lMM
+## 📺 Part One Video 
+- https://youtu.be/WNZbARN7lMM
 
 Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
 
