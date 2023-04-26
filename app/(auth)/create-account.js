@@ -1,6 +1,6 @@
 import { Text, View, TextInput, StyleSheet } from "react-native";
 import { useRef } from "react";
-import { AuthStore } from "../../store.js";
+import { AuthStore, appSignUp } from "../../store.js";
 import { Stack, useRouter } from "expo-router";
 
 export default function CreateAccount() {
@@ -60,6 +60,26 @@ export default function CreateAccount() {
           style={styles.textInput}
         />
       </View>
+
+      <Text
+        style={{ marginBottom: 8 }}
+        onPress={async () => {
+          const resp = await appSignUp(
+            emailRef.current,
+            passwordRef.current,
+            firstNameRef.current + " " + lastNameRef.current
+          );
+          if (resp?.user) {
+            router.replace("/(tabs)/home");
+          } else {
+            console.log(resp.error);
+            Alert.alert("Sign Up Error", resp.error?.message);
+          }
+        }}
+      >
+        SAVE NEW USER
+      </Text>
+
       <Text
         onPress={() => {
           AuthStore.update((s) => {
