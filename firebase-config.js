@@ -24,7 +24,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Initialize Firebase
 const firebaseConfig = {
-
+  apiKey: "AIzaSyC7XBiaPpX3tbmsO7oofWsNYK7ZP3fkkzU",
+  authDomain: "new-web-project-45936.firebaseapp.com",
+  databaseURL: "https://new-web-project-45936.firebaseio.com",
+  projectId: "new-web-project-45936",
+  storageBucket: "new-web-project-45936.appspot.com",
+  messagingSenderId: "882846816313",
+  appId: "1:882846816313:web:4bb4f96fa6c29e5cfcd5e8",
 };
 
 export const app = initializeApp(firebaseConfig);
@@ -68,7 +74,7 @@ export const saveTask = async (docData) => {
       title: docData.title,
       description: docData.description,
       date_created: serverTimestamp(),
-      date_due: Timestamp.fromDate(docData.dueDate),
+      date_due: Timestamp.fromDate(docData.dueDate)),
     });
   } catch (e) {
     throw e;
