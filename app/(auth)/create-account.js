@@ -70,7 +70,7 @@ export default function CreateAccount() {
             firstNameRef.current + " " + lastNameRef.current
           );
           if (resp?.user) {
-            router.replace("/(tabs)/home");
+            router.replace("/(tabs)/");
           } else {
             console.log(resp.error);
             Alert.alert("Sign Up Error", resp.error?.message);

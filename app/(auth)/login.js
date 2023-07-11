@@ -38,7 +38,7 @@ export default function LogIn() {
         onPress={async () => {
           const resp = await appSignIn(emailRef.current, passwordRef.current);
           if (resp?.user) {
-            router.replace("/(tabs)/home");
+            router.replace("/(tabs)/");
           } else {
             console.log(resp.error)
             Alert.alert("Login Error", resp.error?.message)

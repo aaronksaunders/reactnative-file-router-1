@@ -1,6 +1,6 @@
 import { Redirect, Stack, useRouter } from "expo-router";
 import { Button, Pressable, Text, TouchableOpacity, View } from "react-native";
-import { AuthStore, appSignOut } from "../../../store";
+import { AuthStore, appSignOut } from "../../store";
 
 const Tab2Index = () => {
   const router = useRouter();
