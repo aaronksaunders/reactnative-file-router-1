@@ -2,6 +2,8 @@
 
 Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
 
+> Make sure you review the branches to get the latest code
+
 ## 🚀 See Blog Post
 - https://www.youtube.com/watch?v=Os5_DRhN2Aw
 
