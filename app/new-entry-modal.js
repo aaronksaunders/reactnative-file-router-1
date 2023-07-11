@@ -43,7 +43,6 @@ export default function Modal() {
    */
   const doSaveTask = async () => {
     try {
-      debugger;
       await taskMutation.mutateAsync({
         title: title.current,
         description: description.current,
@@ -52,7 +51,8 @@ export default function Modal() {
 
       // reset input fields
       title.current = "";
-      (description.current = ""), setDate("");
+      description.current = "";
+      setDate("");
 
       // exit modal
       navigation.goBack();
@@ -63,13 +63,14 @@ export default function Modal() {
 
   return (
     <>
+      <Stack.Screen options={{ title: "Create New Task", headerTintColor : '#920' }} />
       <View
         style={{ flex: 1, alignItems: "center", justifyContent: "flex-start" }}
       >
         {/* Use `../` as a simple way to navigate to the root. This is not analogous to "goBack". */}
         {!isPresented && <Link href="../">Dismiss</Link>}
-        <View>
-          <Text>Enter New Task</Text>
+        <View style={{ marginTop: 32 }}>
+          <Text style={{color:'#920'}} >Enter New Task</Text>
         </View>
         <View>
           <Text style={styles.label}>Task Title</Text>

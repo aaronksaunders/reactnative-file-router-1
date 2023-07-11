@@ -24,7 +24,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Initialize Firebase
 const firebaseConfig = {
-
+  apiKey: EXPO_PUBLIC_apiKey,
+  authDomain: EXPO_PUBLIC_authDomain,
+  databaseURL: EXPO_PUBLIC_databaseURL,
+  projectId: EXPO_PUBLIC_projectId,
+  storageBucket: EXPO_PUBLIC_storageBucket,
+  messagingSender: EXPO_PUBLIC_messagingSender,
+  appId: EXPO_PUBLIC_appId,
 };
 
 export const app = initializeApp(firebaseConfig);
@@ -68,7 +74,7 @@ export const saveTask = async (docData) => {
       title: docData.title,
       description: docData.description,
       date_created: serverTimestamp(),
-      date_due: Timestamp.fromDate(docData.dueDate)),
+      date_due: Timestamp.fromDate(docData.dueDate),
     });
   } catch (e) {
     throw e;

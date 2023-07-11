@@ -27,6 +27,7 @@ const Tab1Index = () => {
       <Stack.Screen
         options={{
           headerShown: true,
+          headerTintColor: "#920",
           title: "Home",
           headerRight: () => (
             <TouchableOpacity onPress={() => router.push("/new-entry-modal")}>
