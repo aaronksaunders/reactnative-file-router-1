@@ -24,13 +24,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: EXPO_PUBLIC_apiKey,
-  authDomain: EXPO_PUBLIC_authDomain,
-  databaseURL: EXPO_PUBLIC_databaseURL,
-  projectId: EXPO_PUBLIC_projectId,
-  storageBucket: EXPO_PUBLIC_storageBucket,
-  messagingSender: EXPO_PUBLIC_messagingSender,
-  appId: EXPO_PUBLIC_appId,
+  apiKey: process.env.EXPO_PUBLIC_apiKey,
+  authDomain: process.env.EXPO_PUBLIC_authDomain,
+  databaseURL: process.env.EXPO_PUBLIC_databaseURL,
+  projectId: process.env.EXPO_PUBLIC_projectId,
+  storageBucket: process.env.EXPO_PUBLIC_storageBucket,
+  messagingSender: process.env.EXPO_PUBLIC_messagingSender,
+  appId: process.env.EXPO_PUBLIC_appId,
 };
 
 export const app = initializeApp(firebaseConfig);
