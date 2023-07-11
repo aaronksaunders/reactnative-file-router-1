@@ -1,5 +1,11 @@
 import { Stack, useRouter } from "expo-router";
-import { Alert, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useEffect } from "react";
 import { listTasks } from "../../firebase-config";
 import { AntDesign } from "@expo/vector-icons";
@@ -7,19 +13,25 @@ import { useQuery } from "@tanstack/react-query";
 
 const Tab1Index = () => {
   const router = useRouter();
+
   // Queries
-  const { data, error, isError } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ["tasks"],
     queryFn: listTasks,
   });
 
-  console.log(data, error, isError);
+  if (error) {
+    Alert.alert("Error Getting Tasks", error.message);
+  }
 
-  useEffect(() => {
-    if (error) {
-      Alert.alert("Error Getting Tasks", error.message);
-    }
-  }, [error]);
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="#920" />
+        <Text style={{ color: "#920" }}>Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -30,7 +42,12 @@ const Tab1Index = () => {
           title: "Home",
           headerRight: () => (
             <TouchableOpacity onPress={() => router.push("/new-entry-modal")}>
-              <AntDesign name="addfile" size={24} color="#920" style={{marginRight:16}} />
+              <AntDesign
+                name="addfile"
+                size={24}
+                color="#920"
+                style={{ marginRight: 16 }}
+              />
             </TouchableOpacity>
           ),
         }}

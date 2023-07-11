@@ -1,5 +1,5 @@
 import { Stack, useRouter } from "expo-router";
-import { Alert, View } from "react-native";
+import { ActivityIndicator, Alert, Text, View } from "react-native";
 import MyFilesList from "../components/MyList";
 import { useEffect } from "react";
 import { listFiles } from "../../firebase-config";
@@ -8,18 +8,23 @@ import { useQuery } from "@tanstack/react-query";
 const Tab2Images = () => {
   const router = useRouter();
   // Queries
-  const { data, error, isError } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ["image-storage"],
     queryFn: listFiles,
   });
 
-  console.log(data, error, isError);
+  if (error) {
+    Alert.alert("Error Getting Images", error.message);
+  }
 
-  useEffect(() => {
-    if (error) {
-      Alert.alert("Error Getting Images", error.message);
-    }
-  }, [error]);
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="#920" />
+        <Text style={{ color: "#920" }}>Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
