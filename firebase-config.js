@@ -3,11 +3,7 @@ import {
   initializeAuth,
   getReactNativePersistence,
 } from "firebase/auth/react-native";
-import {
-  getStorage,
-  ref,
-  listAll,
-} from "firebase/storage";
+import { getStorage, ref, listAll } from "firebase/storage";
 import {
   addDoc,
   getFirestore,
@@ -49,9 +45,7 @@ export const listFiles = async () => {
     const listRef = ref(storage, "images");
 
     // Find all the prefixes and items.
-    const listResp = await listAll(listRef).catch((e) => {
-      throw e;
-    });
+    const listResp = await listAll(listRef);
 
     if (listResp.items.length === 0) {
       throw new Error("No Images Found");
