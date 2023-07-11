@@ -5,6 +5,17 @@
       "bundler": "metro"
     },
     "name": "rn-file-router",
-    "slug": "rn-file-router"
+    "slug": "rn-file-router",
+    "extra": {
+      "eas": {
+        "projectId": "3adbe8c6-e335-4881-9e56-c3f12684a280"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.aaronksaunders.rnfilerouter"
+    },
+    "android": {
+      "package": "com.aaronksaunders.rnfilerouter"
+    }
   }
 }
