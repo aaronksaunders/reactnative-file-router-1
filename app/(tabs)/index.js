@@ -1,24 +1,23 @@
-import { Link, Redirect, Stack, useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { Alert, Text, TouchableOpacity, View } from "react-native";
-import MyFilesList from "../components/MyList";
-import { useEffect, useState } from "react";
-import { listFiles } from "../../firebase-config";
+import { useEffect } from "react";
+import { listTasks } from "../../firebase-config";
 import { AntDesign } from "@expo/vector-icons";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const Tab1Index = () => {
   const router = useRouter();
   // Queries
   const { data, error, isError } = useQuery({
-    queryKey: ["image-storage"],
-    queryFn: listFiles,
+    queryKey: ["tasks"],
+    queryFn: listTasks,
   });
 
   console.log(data, error, isError);
 
   useEffect(() => {
     if (error) {
-      Alert.alert("Error Getting Images", error.message);
+      Alert.alert("Error Getting Tasks", error.message);
     }
   }, [error]);
 
@@ -36,9 +35,8 @@ const Tab1Index = () => {
           ),
         }}
       />
-      <MyFilesList files={data} />
-      {/* <Link href="/details">Go to Details</Link> */}
-      {/* <Link href="/new-entry-modal">Present modal</Link> */}
+      {/* <MyFilesList files={data} /> */}
+      <Text>{JSON.stringify(data)}</Text>
     </View>
   );
 };

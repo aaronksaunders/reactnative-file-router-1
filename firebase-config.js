@@ -1,24 +1,22 @@
-import { getApp, initializeApp, getApps } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import {
-  getAuth,
   initializeAuth,
   getReactNativePersistence,
 } from "firebase/auth/react-native";
 import {
   getStorage,
   ref,
-  uploadBytesResumable,
-  getDownloadURL,
   listAll,
 } from "firebase/storage";
 import {
-  FieldValue,
   addDoc,
-  doc,
   getFirestore,
   serverTimestamp,
   Timestamp,
   collection,
+  orderBy,
+  query,
+  getDocs,
 } from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -39,6 +37,10 @@ export const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(AsyncStorage),
 });
 
+/**
+ * list all files in storage
+ * @returns list
+ */
 export const listFiles = async () => {
   try {
     const storage = getStorage();
@@ -59,16 +61,15 @@ export const listFiles = async () => {
     throw e;
   }
 };
-// For more information on how to access Firebase in your project,
-// see the Firebase documentation: https://firebase.google.com/docs/web/setup#access-firebase
 
 /**
- * 
- * @param {*} docData 
- * @returns 
+ * save a task to the tasks collection
+ *
+ * @param {*} docData
+ * @returns
  */
 export const saveTask = async (docData) => {
-  console.log('docData', docData)
+  console.log("docData", docData);
   try {
     return await addDoc(collection(db, "tasks"), {
       title: docData.title,
@@ -76,6 +77,34 @@ export const saveTask = async (docData) => {
       date_created: serverTimestamp(),
       date_due: Timestamp.fromDate(docData.dueDate),
     });
+  } catch (e) {
+    throw e;
+  }
+};
+
+/**
+ *
+ * @returns
+ */
+export const listTasks = async () => {
+  try {
+    // Create a reference to the cities collection
+    const tasksRef = collection(db, "tasks");
+
+    // Create a query against the collection.
+    const q = query(tasksRef, orderBy("date_created", "asc"));
+    const querySnapshot = await getDocs(q);
+    const result = [];
+    querySnapshot.forEach((doc) => {
+      result.push({
+        id: doc.id,
+        title: doc.data().title,
+        description: doc.data().description,
+        date_created: doc.data().date_created.toDate(),
+        date_due: doc.data().date_due.toDate(),
+      });
+    });
+    return result;
   } catch (e) {
     throw e;
   }

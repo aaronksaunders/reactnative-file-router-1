@@ -32,9 +32,10 @@ export default function Modal() {
   // react-query mutation setup
   const taskMutation = useMutation({
     mutationFn: (task) => saveTask(task),
-    onSuccess: () => {
+    onSuccess: async () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      console.log("invalidate query")
+      await queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
   });
 
@@ -52,7 +53,7 @@ export default function Modal() {
       // reset input fields
       title.current = "";
       description.current = "";
-      setDate("");
+      setDate(new Date());
 
       // exit modal
       navigation.goBack();
@@ -103,7 +104,7 @@ export default function Modal() {
           <Text style={styles.label}>Task Due Date</Text>
           <View style={{ flexDirection: "row", width: 150 }}>
             <TextInput
-              value={date.toLocaleDateString()}
+              value={date?.toLocaleDateString()}
               placeholder="Select a date"
               style={styles.dateInput}
               editable={false}
@@ -126,7 +127,6 @@ export default function Modal() {
               onConfirm={(v) => {
                 setDate(v);
                 setShowDatePicker(false);
-                console.log(date.toLocaleDateString());
               }}
               onCancel={() => setShowDatePicker(false)}
             />
